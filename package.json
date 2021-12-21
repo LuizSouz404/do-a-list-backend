@@ -1,0 +1,27 @@
+{
+  "name": "to-do-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only --ignore-watch ./node_modules ./src/server.ts",
+    "test": "jest --passWithNoTests --runInBand --no-cache"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },  
+  "dependencies": {
+    "@prisma/client": "^3.7.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^17.0.2",
+    "prisma": "^3.7.0",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  }
+}
