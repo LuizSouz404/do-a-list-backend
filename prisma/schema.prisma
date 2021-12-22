@@ -11,10 +11,40 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  lists List[]
 
   @@map("users")
+}
+
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  color     String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userID    String
+
+  todos Todo[]
+
+  @@map("lists")
+}
+
+model Todo {
+  id        String   @id @default(uuid())
+  title     String
+  check     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  deadline  DateTime
+
+  list   List   @relation(fields: [listID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  listID String
+
+  @@map("todos")
 }
