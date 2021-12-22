@@ -1,10 +1,25 @@
+import { PrismaClient } from '@prisma/client';
 import express from 'express';
-import { usersRoutes } from './routes/users.routes';
+import {auth, list, profile, todo} from './routes'
+import helmet from 'helmet'
+import cors from 'cors'
 
-const server = express();
+export const prisma = new PrismaClient()
+const app = express()
+const port = process.env.PORT
 
-server.use(express.json());
+app.disable('x-powered-by')
+app.set('trust proxy', 1)
 
-server.use(usersRoutes);
+app.use(express.json())
+app.use(cors())
+app.use(helmet())
 
-server.listen(3333, () => {console.log('Server is running on port 3333!')});
+app.use(express.json());
+
+app.use('/', auth)
+app.use('/profile', profile)
+app.use('/list', list)
+app.use('/list/:id', todo)
+
+app.listen(3333, () => {console.log(`🚀 Server is running on port ${port}!`)});
