@@ -48,7 +48,7 @@ export default async (request: Request, response: Response) => {
 
   delete userAuth.password;
 
-  return response.json({
+  return response.status(200).json({
     user: userAuth,
     token
   });

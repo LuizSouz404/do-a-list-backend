@@ -5,10 +5,10 @@ import { checkTodo, createTodo, deleteTodo, showTodo } from '../resolvers/mutati
 const router = Router();
 
 router
-  .get('/:idTodo', ensureAuth, showTodo)
-  .post('/create', ensureAuth, createTodo)
-  .patch('/check/:idTodo', ensureAuth, checkTodo)
-  .delete('/delete/:idTodo', ensureAuth, deleteTodo)
+  .get('/:id', ensureAuth, showTodo)
+  .post('/:id/create', ensureAuth, createTodo)
+  .patch('/check/:id', ensureAuth, checkTodo)
+  .delete('/delete/:id', ensureAuth, deleteTodo)
 
 
   export default router

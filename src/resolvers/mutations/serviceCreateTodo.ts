@@ -4,11 +4,10 @@ import { prisma } from '../../server'
 export default async(request: Request, response: Response) => {
   const { title, deadline: deadlineData } = request.body;
   const {id} = request.params;
-  // const {id} = request.user;
 
   const list = await prisma.list.findFirst({
     where: {
-      id
+      id,
     }
   });
 
@@ -33,5 +32,5 @@ export default async(request: Request, response: Response) => {
     }
   });
 
-  return response.status(201).json({todo});    
+  return response.status(201).json(todo);    
 }

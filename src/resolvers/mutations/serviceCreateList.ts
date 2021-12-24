@@ -16,6 +16,7 @@ export default async (request: Request, response: Response) => {
       title: true,
       color: true,
       createdAt: true,
+      todos: true
     }
   });
 

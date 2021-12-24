@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import { prisma } from "../../server";
 
 export default async (request: Request, response:Response) => {
-  const {idTodo} = request.params;
+  const {id} = request.params;
 
-  const todo = await prisma.todo.findUnique({
+  const todo = await prisma.todo.findFirst({
     where: {
-      id: idTodo
+      id
     }
   })
 
@@ -16,7 +16,7 @@ export default async (request: Request, response:Response) => {
 
   const user = await prisma.todo.update({
     where: {
-      id: idTodo
+      id
     },
     data: {
       check: !todo.check
@@ -31,5 +31,5 @@ export default async (request: Request, response:Response) => {
     
   });
 
-  return response.status(201).json({user});
+  return response.status(201).json(user);
 }
